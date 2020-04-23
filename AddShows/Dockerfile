@@ -1,5 +1,5 @@
 FROM openjdk:8
-ADD web/target/docker-AddShows-service.jar docker-AddShows-service.jar
+CMD mvn clean install -DskipTests
+ADD target/add-show-service.jar add-show-service.jar
 EXPOSE 8080
-CMD mvn clean install
-ENTRYPOINT ["java", "-jar", "docker-AddShows-service.jar"]
+ENTRYPOINT ["java", "-jar", "add-show-service.jar"]

@@ -2,12 +2,14 @@ version: '3'
 
 services: 
 
-   docker-rest-service:
+   add-show-service:
      build: .
-     image: docker-AddShows-service
-     container_name: docker-AddShows-service
+     image: add-show-service
+     container_name: add-show-service
      hostname: localhost
      restart: "on-failure"
+     depends_on:
+       - "cassandra"
      ports: 
        - 8080:8080
      networks:
