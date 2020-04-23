@@ -1,0 +1,32 @@
+version: '3'
+
+services: 
+
+   docker-rest-service:
+     build: .
+     image: docker-AddShows-service
+     container_name: docker-AddShows-service
+     hostname: localhost
+     restart: "on-failure"
+     ports: 
+       - 8080:8080
+     networks:
+       - myproject
+
+   cassandra:
+     image: cassandra:latest
+     container_name: cassandra
+     hostname: cassandra
+     ports:
+       - "9042:9042"
+     volumes:
+       - empdata:/var/lib/cassandra
+     networks:
+       - myproject
+       
+volumes:
+   empdata:
+     
+networks:
+   myproject:     
+     driver: "bridge"
